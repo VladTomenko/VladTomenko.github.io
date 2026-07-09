@@ -254,6 +254,33 @@
   /* плавный переход между страницами (RU↔EN); Firefox — мгновенно */
   @view-transition{navigation:auto}
 
+  /* 🎴 карточка → на первый план (App Store-морф: View Transitions + <dialog>, 0 KB зависимостей) */
+  ::view-transition{pointer-events:none}
+  ::view-transition-group(svc-card){animation-duration:350ms; animation-timing-function:cubic-bezier(0.2,0.8,0.2,1);
+    border-radius:14px; overflow:clip}
+  ::view-transition-old(svc-card), ::view-transition-new(svc-card){height:100%}
+  .vt-hidden{visibility:hidden}
+  html:has(.svc-dialog[open]){overflow:hidden}
+  .svc-dialog{border:1px solid var(--border-2); border-radius:16px; background:var(--bg-2); color:var(--text);
+    padding:0; width:min(560px,92vw); max-height:min(80vh,660px); margin:auto; box-shadow:var(--shadow)}
+  .svc-dialog::backdrop{background:rgba(0,0,0,0.55); backdrop-filter:blur(10px)}
+  .svc-dialog{opacity:1; transition:opacity 200ms var(--ease)}
+  @starting-style{ .svc-dialog[open]{opacity:0} }
+  .svc-close{all:unset; position:absolute; top:0.75rem; right:0.75rem; width:40px; height:40px; display:flex;
+    align-items:center; justify-content:center; border-radius:999px; cursor:pointer; color:var(--text-2);
+    font-size:1.125rem; line-height:1; transition:background 150ms var(--ease), color 150ms var(--ease)}
+  .svc-close:hover{background:var(--bg-3); color:var(--text)}
+  .svc-close:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .svc-dialog-head{padding:1.75rem 3.5rem 1rem 1.75rem}
+  .svc-dialog-head .k{display:block; margin-bottom:0.5rem; font-family:var(--mono); font-size:0.75rem;
+    color:var(--accent); letter-spacing:0.05em; text-transform:uppercase}
+  .svc-dialog-head .ribbon{display:block; margin-bottom:0.625rem}
+  .svc-dialog-head .h3{display:block; font-size:1.375rem; font-weight:600; letter-spacing:-0.01em; line-height:1.2; color:var(--text)}
+  .svc-dialog-head .sum{display:block; margin-top:0.5rem; color:var(--text-2); font-size:0.975rem; line-height:1.45}
+  .svc-dialog-head .price{display:flex; margin:0.75rem 0 0.25rem}
+  .svc-dialog-body{padding:1.125rem 1.75rem 1.625rem; overflow-y:auto; max-height:calc(min(80vh,660px) - 9rem)}
+  .svc-dialog-body.xbody{border-top:1px solid var(--border)}
+
   /* изометрическая 3D-сцена процесса (чистый CSS) */
   .iso{display:flex; justify-content:center; perspective:1200px; margin:0.5rem 0 3.5rem; overflow:visible}
   .iso-stage{position:relative; transform-style:preserve-3d; transform:rotateX(55deg) rotateZ(-42deg);
@@ -591,6 +618,13 @@
     </div>
   </section>
 
+  <dialog class="svc-dialog" aria-labelledby="svc-dlg-title">
+    <button class="svc-close" type="button" aria-label="Закрыть">✕</button>
+    <div class="svc-dialog-head" id="svc-dlg-title"></div>
+    <div class="xbody svc-dialog-body"></div>
+  </dialog>
+  <noscript><style>.reveal{opacity:1 !important; transform:none !important}</style></noscript>
+
   <footer>
     <div class="container foot">
       <span class="mark"><span class="dot" aria-hidden="true"></span> Владислав Томенко</span>
@@ -620,15 +654,62 @@
       els.forEach(function(el){ el.classList.add('in'); });
     }
 
-    // expandable «living» cards
+    // 🎴 карточка → на первый план (View Transitions морф в <dialog>; фоллбек — мягкий fade)
+    var dlg = document.querySelector('.svc-dialog');
+    var dlgHead = dlg && dlg.querySelector('.svc-dialog-head');
+    var dlgBody = dlg && dlg.querySelector('.svc-dialog-body');
+    var lastCard = null, vtBusy = false;
+    var canVT = function(){ return !!document.startViewTransition && !reduce; };
+
+    function openCard(card){
+      if(!dlg || vtBusy) return;
+      var head = card.querySelector('.xhead > span');
+      var body = card.querySelector('.xdetail .xbody');
+      dlgHead.innerHTML = head ? head.innerHTML : '';
+      dlgBody.innerHTML = body ? body.innerHTML : '';
+      lastCard = card;
+      if(canVT()){
+        vtBusy = true;
+        card.style.viewTransitionName = 'svc-card';
+        var t = document.startViewTransition(function(){
+          card.style.viewTransitionName = '';
+          card.classList.add('vt-hidden');
+          dlg.style.viewTransitionName = 'svc-card';
+          dlg.showModal();
+        });
+        t.finished.then(function(){ dlg.style.viewTransitionName=''; vtBusy=false; }, function(){ vtBusy=false; });
+      } else {
+        dlg.showModal();
+      }
+    }
+    function closeCard(){
+      if(!dlg || vtBusy || !dlg.open) return;
+      var card = lastCard;
+      if(canVT() && card){
+        vtBusy = true;
+        dlg.style.viewTransitionName = 'svc-card';
+        var t = document.startViewTransition(function(){
+          dlg.style.viewTransitionName = '';
+          dlg.close();
+          card.classList.remove('vt-hidden');
+          card.style.viewTransitionName = 'svc-card';
+        });
+        t.finished.then(function(){ card.style.viewTransitionName=''; vtBusy=false; lastCard=null; }, function(){ card.style.viewTransitionName=''; vtBusy=false; lastCard=null; });
+      } else {
+        dlg.close();
+        if(card) card.classList.remove('vt-hidden');
+        lastCard = null;
+      }
+    }
     document.querySelectorAll('.xhead').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var card = btn.closest('.xcard');
-        if(!card) return;
-        var open = card.classList.toggle('open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
+      btn.setAttribute('aria-haspopup','dialog');
+      btn.addEventListener('click', function(){ openCard(btn.closest('.xcard')); });
     });
+    if(dlg){
+      dlg.querySelector('.svc-close').addEventListener('click', closeCard);
+      dlg.addEventListener('cancel', function(e){ e.preventDefault(); closeCard(); });
+      dlg.addEventListener('click', function(e){ if(e.target === dlg) closeCard(); });
+    }
 
     // spotlight-hover: координаты курсора в CSS-переменные карточки
     if(window.matchMedia && matchMedia('(hover:hover) and (pointer:fine)').matches){
