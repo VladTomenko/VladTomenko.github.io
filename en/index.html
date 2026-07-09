@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vladyslav Tomenko — websites that work + n8n automation: bots, integrations, reports</title>
+<meta name="description" content="Websites that don't just look good — they work. Design and backend automation from one person: n8n, Telegram bots, integrations. 33 workflows in production.">
+<meta name="theme-color" content="#0E0F11">
+<link rel="alternate" hreflang="ru" href="https://vladtomenko.github.io/">
+<link rel="alternate" hreflang="en" href="https://vladtomenko.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://vladtomenko.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://vladtomenko.github.io/en/">
+<meta property="og:title" content="Websites that don't just look good — they work">
+<meta property="og:description" content="Design + backend automation, one person. Form → CRM → Telegram notification → auto-reply. Describe your task — honest answer on price and timeline.">
+<meta property="og:image" content="https://vladtomenko.github.io/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://vladtomenko.github.io/og-en.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0F11'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%2335B7A8'/%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --bg:#0E0F11; --bg-2:#141619; --bg-3:#1A1D21;
+    --text:rgba(237,239,241,0.93); --text-2:rgba(237,239,241,0.60); --text-3:rgba(237,239,241,0.42);
+    --border:rgba(255,255,255,0.09); --border-2:rgba(255,255,255,0.14);
+    --accent:#35B7A8; --accent-soft:rgba(53,183,168,0.14); --on-accent:#08130F;
+    --font:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono','Cascadia Code','Segoe UI Mono',Menlo,Consolas,monospace;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+    --maxw:1160px; --measure:64ch;
+    --r:12px; --r-pill:999px;
+    --shadow:0 1px 2px rgba(0,0,0,0.20),0 8px 24px rgba(0,0,0,0.22);
+  }
+  @media (prefers-color-scheme:light){
+    :root{
+      --bg:#F7F7F5; --bg-2:#FFFFFF; --bg-3:#FFFFFF;
+      --text:#191B1D; --text-2:rgba(25,27,29,0.64); --text-3:rgba(25,27,29,0.46);
+      --border:rgba(0,0,0,0.10); --border-2:rgba(0,0,0,0.16);
+      --accent:#0C8375; --accent-soft:rgba(12,131,117,0.10); --on-accent:#FFFFFF;
+      --shadow:0 1px 2px rgba(20,24,28,0.06),0 10px 24px rgba(20,24,28,0.08);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E0F11; --bg-2:#141619; --bg-3:#1A1D21;
+    --text:rgba(237,239,241,0.93); --text-2:rgba(237,239,241,0.60); --text-3:rgba(237,239,241,0.42);
+    --border:rgba(255,255,255,0.09); --border-2:rgba(255,255,255,0.14);
+    --accent:#35B7A8; --accent-soft:rgba(53,183,168,0.14); --on-accent:#08130F;
+    --shadow:0 1px 2px rgba(0,0,0,0.20),0 8px 24px rgba(0,0,0,0.22);
+  }
+  :root[data-theme="light"]{
+    --bg:#F7F7F5; --bg-2:#FFFFFF; --bg-3:#FFFFFF;
+    --text:#191B1D; --text-2:rgba(25,27,29,0.64); --text-3:rgba(25,27,29,0.46);
+    --border:rgba(0,0,0,0.10); --border-2:rgba(0,0,0,0.16);
+    --accent:#0C8375; --accent-soft:rgba(12,131,117,0.10); --on-accent:#FFFFFF;
+    --shadow:0 1px 2px rgba(20,24,28,0.06),0 10px 24px rgba(20,24,28,0.08);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0}
+  .wrap{
+    background:var(--bg); color:var(--text); font-family:var(--font);
+    -webkit-font-smoothing:antialiased; line-height:1.5; font-size:18px;
+    overflow-x:hidden;
+  }
+  .container{max-width:var(--maxw); margin-inline:auto; padding-inline:1.5rem}
+  section{padding-block:clamp(4rem,9vw,8.5rem)}
+  a{color:inherit; text-decoration:none}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+
+  .eyebrow{
+    font-family:var(--mono); font-size:0.8125rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--accent);
+  }
+  h1,h2,h3{margin:0; font-weight:600; letter-spacing:-0.02em; text-wrap:balance; line-height:1.08}
+  h1{font-size:clamp(2.5rem,6vw,4.75rem)}
+  h2{font-size:clamp(1.875rem,3.5vw,2.75rem); letter-spacing:-0.015em}
+  h3{font-size:1.375rem; letter-spacing:-0.01em}
+  p{margin:0}
+  .lead{font-size:clamp(1.0625rem,1.6vw,1.25rem); color:var(--text-2); max-width:var(--measure)}
+  .muted{color:var(--text-2)}
+  .small{font-size:0.9375rem; color:var(--text-3)}
+
+  /* header */
+  header{position:sticky; top:0; z-index:5; backdrop-filter:blur(10px);
+    background:color-mix(in srgb,var(--bg) 78%,transparent);
+    border-bottom:1px solid var(--border)}
+  .bar{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .mark{display:flex; align-items:center; gap:0.625rem; font-weight:500}
+  .dot{width:9px; height:9px; border-radius:var(--r-pill); background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft)}
+  .mark .tag{font-family:var(--mono); font-size:0.75rem; color:var(--text-3); letter-spacing:0.04em}
+  .lang{font-family:var(--mono); font-size:0.8125rem; color:var(--text-3); letter-spacing:0.06em;
+    padding:0.375rem 0.5rem; border-radius:8px; transition:color 150ms var(--ease)}
+  .lang:hover{color:var(--accent)}
+
+  /* web-direction section */
+  .vs{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:3rem}
+  .vs .card:hover{transform:none}
+  .vs .vs-t{font-family:var(--mono); font-size:0.75rem; letter-spacing:0.05em; text-transform:uppercase;
+    display:block; margin-bottom:0.875rem}
+  .vs .plain .vs-t{color:var(--text-3)}
+  .vs .works{border-color:var(--accent)}
+  .vs .works .vs-t{color:var(--accent)}
+  .vs ul{margin:0; padding:0; list-style:none}
+  .vs li{padding:0.4rem 0; color:var(--text-2); font-size:0.95rem; line-height:1.45}
+  .vs .plain li{color:var(--text-3)}
+  @media (max-width:820px){ .vs{grid-template-columns:1fr} }
+
+  /* buttons */
+  .btn{display:inline-flex; align-items:center; gap:0.5rem; height:48px; padding-inline:1.375rem;
+    border-radius:var(--r-pill); font-family:var(--font); font-size:1rem; font-weight:500;
+    cursor:pointer; border:1px solid transparent; transition:transform 150ms var(--ease),background 150ms var(--ease),border-color 150ms var(--ease)}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--accent); color:var(--on-accent)}
+  .btn-primary:hover{filter:brightness(1.06)}
+  .btn-ghost{background:transparent; color:var(--text); border-color:var(--border-2)}
+  .btn-ghost:hover{background:var(--bg-2)}
+  .btn-sm{height:40px; font-size:0.9375rem; padding-inline:1rem}
+  .btn svg{width:18px; height:18px; flex:none}
+  .copy-mail{all:unset; cursor:pointer; display:inline-block; margin-top:1.375rem;
+    font-family:var(--mono); font-size:0.875rem; color:var(--text-3); letter-spacing:0.02em}
+  .copy-mail:hover{color:var(--text-2)}
+  .copy-mail:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .copy-mail b{color:var(--text-2); font-weight:500}
+  .copy-mail.done b{color:var(--accent)}
+
+  /* hero */
+  .hero{position:relative; isolation:isolate; overflow:hidden}
+  .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:0.42;
+    -webkit-mask-image:radial-gradient(120% 130% at 100% 8%,#000 18%,transparent 68%);
+    mask-image:radial-gradient(120% 130% at 100% 8%,#000 18%,transparent 68%)}
+  .hero-inner{display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(2rem,5vw,4.5rem); align-items:center}
+  .hero-copy{max-width:40ch}
+  .hero h1{margin-top:1.25rem}
+  .hero .lead{margin-top:1.5rem; max-width:42ch}
+  .cta-row{display:flex; flex-wrap:wrap; gap:0.875rem; margin-top:2.25rem}
+  .flow{background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r);
+    padding:1.5rem 1.5rem 1.375rem; box-shadow:var(--shadow); width:100%}
+  .flow-top{display:flex; align-items:center; gap:0.5rem; font-family:var(--mono);
+    font-size:0.75rem; color:var(--text-3); letter-spacing:0.05em; margin-bottom:1.375rem}
+  .flow-top .dot{width:8px; height:8px}
+  .flow ol{list-style:none; margin:0; padding:0}
+  .flow li{position:relative; display:grid; grid-template-columns:26px 1fr; gap:0.875rem; padding-bottom:1.25rem}
+  .flow li:last-child{padding-bottom:0}
+  .flow .mk{position:relative; display:flex; justify-content:center}
+  .flow .mk i{width:11px; height:11px; border-radius:999px; background:var(--accent); margin-top:0.28rem;
+    box-shadow:0 0 0 4px var(--accent-soft)}
+  .flow li:not(:last-child) .mk::after{content:""; position:absolute; left:50%; transform:translateX(-0.5px);
+    top:1.05rem; bottom:-1.05rem; width:1px; background:var(--border-2)}
+  .flow .lbl{font-family:var(--mono); font-size:0.9375rem; color:var(--text); letter-spacing:-0.01em}
+  .flow .sub{font-size:0.8125rem; color:var(--text-3); margin-top:0.15rem}
+
+  /* proof strip */
+  .proof{border-block:1px solid var(--border); background:var(--bg-2)}
+  .proof .container{display:grid; grid-template-columns:repeat(3,1fr); gap:2rem;
+    padding-block:2.5rem}
+  .stat .n{font-family:var(--mono); font-size:2rem; font-weight:500; letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums}
+  .stat .l{margin-top:0.375rem; color:var(--text-2); font-size:0.9375rem}
+
+  /* grids */
+  .head-block{max-width:34ch; margin-bottom:3rem}
+  .head-block .lead{margin-top:1rem}
+  .grid{display:grid; gap:1rem}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r);
+    padding:1.75rem; transition:border-color 200ms var(--ease),transform 200ms var(--ease)}
+  .card:hover{border-color:var(--border-2); transform:translateY(-2px)}
+  .card h3{margin-bottom:0.625rem}
+  .card p{color:var(--text-2); font-size:1rem}
+  .card .k{font-family:var(--mono); font-size:0.75rem; color:var(--accent); letter-spacing:0.05em;
+    text-transform:uppercase}
+
+  /* expandable «living» cards */
+  .grid{align-items:start}
+  .xcard{padding:0; overflow:hidden}
+  .xhead{all:unset; box-sizing:border-box; display:grid; grid-template-columns:1fr auto; gap:1rem;
+    align-items:start; width:100%; padding:1.5rem; cursor:pointer}
+  .xhead:focus-visible{outline:2px solid var(--accent); outline-offset:-3px; border-radius:var(--r)}
+  .xhead .k{display:block; margin-bottom:0.5rem}
+  .xhead .ribbon{display:block; margin-bottom:0.625rem}
+  .xhead .h3{display:block; font-size:1.3125rem; font-weight:600; letter-spacing:-0.01em; line-height:1.18; color:var(--text)}
+  .xhead .sum{display:block; margin-top:0.5rem; color:var(--text-2); font-size:0.95rem; line-height:1.45}
+  .xhead .price{margin:0.75rem 0 0.25rem}
+  .chev{width:20px; height:20px; color:var(--text-3); margin-top:0.35rem; transition:transform 200ms var(--ease)}
+  .xcard.open .chev{transform:rotate(180deg)}
+  .xdetail{display:grid; grid-template-rows:0fr; transition:grid-template-rows 260ms var(--ease)}
+  .xcard.open .xdetail{grid-template-rows:1fr}
+  .xdetail > div{overflow:hidden}
+  .xbody{padding:1.125rem 1.5rem 1.5rem; border-top:1px solid var(--border)}
+  .xbody .row{padding:0.625rem 0; font-size:0.9375rem; color:var(--text-2); line-height:1.5}
+  .xbody .row + .row{border-top:1px solid var(--border)}
+  .xbody .row b{display:block; margin-bottom:0.2rem; color:var(--accent); font-weight:500;
+    font-family:var(--mono); font-size:0.6875rem; letter-spacing:0.05em; text-transform:uppercase}
+  .xbody .tick{color:var(--accent); font-weight:500}
+  .xbody .no{color:var(--text-3)}
+
+  /* process (real sequence -> numbered) */
+  .steps{counter-reset:s; display:grid; gap:0; border-top:1px solid var(--border)}
+  .step{counter-increment:s; display:grid; grid-template-columns:auto 1fr; gap:1.5rem;
+    padding-block:1.75rem; border-bottom:1px solid var(--border); align-items:baseline}
+  .step::before{content:counter(s,decimal-leading-zero); font-family:var(--mono);
+    color:var(--accent); font-size:0.9375rem; font-weight:500}
+  .step h3{font-size:1.1875rem}
+  .step p{color:var(--text-2); font-size:1rem; margin-top:0.375rem; max-width:52ch}
+
+  /* pricing */
+  .price{display:flex; align-items:baseline; gap:0.5rem; margin:0.75rem 0 1rem}
+  .price .amt{font-family:var(--mono); font-size:1.75rem; font-weight:500; letter-spacing:-0.02em}
+  .price .per{color:var(--text-3); font-size:0.875rem}
+  .feat{color:var(--text-2); font-size:0.95rem}
+  .card.featured{border-color:var(--accent); box-shadow:var(--shadow)}
+  .ribbon{font-family:var(--mono); font-size:0.6875rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent)}
+
+  /* cta band */
+  .band{background:var(--bg-2); border:1px solid var(--border); border-radius:calc(var(--r) + 6px);
+    padding:clamp(2.25rem,5vw,4rem); text-align:left}
+  .band h2{max-width:20ch}
+  .band .lead{margin-top:1rem}
+
+  footer{border-top:1px solid var(--border); padding-block:2.5rem; color:var(--text-3); font-size:0.875rem}
+  .foot{display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(20px); transition:opacity 550ms var(--ease),transform 550ms var(--ease)}
+  .reveal.in{opacity:1; transform:none}
+
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr; gap:2.5rem}
+    .hero-copy{max-width:100%}
+    .flow{max-width:460px}
+  }
+  @media (max-width:820px){
+    .proof .container,.cols-3,.cols-2{grid-template-columns:1fr}
+    .proof .container{gap:1.75rem}
+  }
+  @media (max-width:520px){
+    .wrap{font-size:17px}
+    .mark .tag{display:none}
+    section{padding-block:clamp(3rem,11vw,4.25rem)}
+    .band{padding:1.75rem}
+    .flow{padding:1.375rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important}
+    .reveal{opacity:1; transform:none}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="container bar">
+      <span class="mark"><span class="dot" aria-hidden="true"></span> Vladyslav&nbsp;Tomenko <span class="tag">// AI-automation</span></span>
+      <span style="display:flex; align-items:center; gap:0.75rem">
+        <a class="lang" href="/" aria-label="Русская версия">RU</a>
+        <a class="btn btn-ghost btn-sm" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener">Telegram</a>
+      </span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Websites · Telegram bots · n8n automation</span>
+        <h1>Websites that don't just look good — they work.</h1>
+        <p class="lead">Design and backend automation, one person. A form on a normal site just sends an email. A form I build routes the lead into your CRM, notifies you on Telegram, and replies to the client automatically.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg> Discuss your task</a>
+          <a class="btn btn-ghost" href="#how">How I work</a>
+        </div>
+      </div>
+      <aside class="flow" aria-label="Example automation flow">
+        <div class="flow-top"><span class="dot" aria-hidden="true"></span> workflow · example</div>
+        <ol>
+          <li><span class="mk"><i></i></span><div><div class="lbl">Lead from your website</div><div class="sub">client submits a form</div></div></li>
+          <li><span class="mk"><i></i></span><div><div class="lbl">n8n processes it</div><div class="sub">classification · routing</div></div></li>
+          <li><span class="mk"><i></i></span><div><div class="lbl">Row in your CRM</div><div class="sub">or Google Sheets</div></div></li>
+          <li><span class="mk"><i></i></span><div><div class="lbl">You get notified</div><div class="sub">Telegram, instantly</div></div></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <div class="proof">
+    <div class="container">
+      <div class="stat reveal"><div class="n">33</div><div class="l">production workflows running daily — not tutorial projects</div></div>
+      <div class="stat reveal"><div class="n">≠</div><div class="l">creator ≠ verifier: a separate layer catches errors before you see them</div></div>
+      <div class="stat reveal"><div class="n">24/7</div><div class="l">your site keeps taking and routing leads while you sleep</div></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="head-block reveal">
+        <span class="eyebrow">Websites</span>
+        <h2>A brochure site sits there. Yours should work.</h2>
+      </div>
+      <div class="vs reveal">
+        <div class="card plain">
+          <span class="vs-t">A normal website</span>
+          <ul>
+            <li>A digital brochure. It just sits there.</li>
+            <li>The form sends an email into the void.</li>
+            <li>Pretty — but it does nothing.</li>
+          </ul>
+        </div>
+        <div class="card works">
+          <span class="vs-t">Your website</span>
+          <ul>
+            <li>An employee. Takes leads around the clock.</li>
+            <li>Form → CRM → Telegram notification → auto-reply to the client.</li>
+            <li>Beautiful, fast, accessible — <b>and</b> it works.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <div class="card reveal"><span class="k">Design</span><h3>Design &amp; build</h3><p>A design system for your brand — type scale, spacing grid, dual theme — with conversion-focused sections and a polished mobile version. Every build passes a deterministic quality gate, not a "looks fine" check.</p></div>
+        <div class="card reveal"><span class="k">Backend</span><h3>Automation (n8n)</h3><p>Leads flow into your CRM, you get notified, the client gets an instant reply. Integrations, AI lead qualification, scheduled reports. The site stops being a brochure.</p></div>
+        <div class="card reveal"><span class="k">Speed</span><h3>Speed, SEO, accessibility</h3><p>Core Web Vitals under control, semantic markup and structured data — readable by Google, AI assistants and screen readers. Fast by architecture, not by luck.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="head-block reveal">
+        <span class="eyebrow">Packages</span>
+        <h2>Transparent, fixed-price.</h2>
+        <p class="lead">First conversation and assessment are free. 50% upfront, the rest after you've seen it working.</p>
+      </div>
+      <div class="grid cols-3">
+        <div class="card xcard reveal">
+          <button class="xhead" aria-expanded="false"><span><span class="h3">Launch</span><span class="price"><span class="amt">from $800</span><span class="per">· ~1 week</span></span><span class="sum">A landing page that starts taking leads on day one.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="xdetail"><div><div class="xbody">
+            <div class="row"><b>Included</b><span><span class="tick">✓</span> custom design, no templates · conversion sections + polished mobile · form → Telegram/CRM with notification · on-page SEO + analytics · fast and accessible out of the box.</span></div>
+            <div class="row"><b>Best for</b><span>Launching a service or an offer — fast, with working lead intake.</span></div>
+          </div></div></div>
+        </div>
+        <div class="card xcard featured reveal">
+          <button class="xhead" aria-expanded="false"><span><span class="ribbon">Most popular</span><span class="h3">Grow</span><span class="price"><span class="amt">from $3,000</span><span class="per">· 2–4 weeks</span></span><span class="sum">A multi-page site with real functionality.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="xdetail"><div><div class="xbody">
+            <div class="row"><b>Included</b><span><span class="tick">✓</span> everything in Launch + up to 6–8 pages · API integrations and motion · form → CRM with auto-reply · structured data (JSON-LD), technical SEO · a CMS so you edit content yourself.</span></div>
+            <div class="row"><b>Best for</b><span>A business that needs a real website, not a business card.</span></div>
+          </div></div></div>
+        </div>
+        <div class="card xcard reveal">
+          <button class="xhead" aria-expanded="false"><span><span class="h3">Automate</span><span class="price"><span class="amt">from $4,500</span><span class="per">· from 1 month</span></span><span class="sum">A website that works like an employee.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="xdetail"><div><div class="xbody">
+            <div class="row"><b>Included</b><span><span class="tick">✓</span> everything in Grow + end-to-end n8n automation · form → CRM → notification → AI lead qualification → auto-onboarding · payments, mailing, messengers, analytics.</span></div>
+            <div class="row"><b>Best for</b><span>Service businesses with lead flow, where manual processing means lost money.</span></div>
+          </div></div></div>
+        </div>
+      </div>
+      <p class="small reveal" style="margin-top:1.5rem">Standalone automation — from $500 per integration. Maintenance &amp; growth — optional. Remote &amp; async-friendly.</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="container">
+      <div class="head-block reveal">
+        <span class="eyebrow">How I work</span>
+        <h2>Four steps — from a task to a working system.</h2>
+      </div>
+      <div class="steps reveal">
+        <div class="step"><div class="s-body"><h3>Describe the task</h3><p>Two or three sentences about what eats most of your time. The assessment is free.</p></div></div>
+        <div class="step"><div class="s-body"><h3>Get an honest answer</h3><p>Whether it can be automated, the price and the timeline. If it can't — I'll say so.</p></div></div>
+        <div class="step"><div class="s-body"><h3>Built in stages</h3><p>You see working demos along the way — before full payment.</p></div></div>
+        <div class="step"><div class="s-body"><h3>Handover with a guide</h3><p>Tested on your real data, delivered with a short video guide for your team.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="head-block reveal">
+        <span class="eyebrow">Selected work</span>
+        <h2>Live systems, not portfolio pictures.</h2>
+        <p class="lead">Client details are under NDA — I show architecture and demos on anonymized data. Case #1 is this site itself: designed and built by me, with design tokens, dual theme and a deterministic quality gate before every release.</p>
+      </div>
+      <div class="grid cols-3">
+        <div class="card reveal"><span class="k">Case 01</span><h3>AI inbox</h3><p>Incoming messages — including voice — get transcribed, classified by AI and filed automatically. With access whitelisting and the right to be forgotten.</p></div>
+        <div class="card reveal"><span class="k">Case 02</span><h3>Verified pipeline</h3><p>Scanner → deterministic engine → a separate outcome evaluator. The part that generates a decision is never the part that grades it.</p></div>
+        <div class="card reveal"><span class="k">Case 03</span><h3>Data protection</h3><p>Three layers of control: dangerous operations intercepted before execution, secret-leak scanning, egress audit — so sensitive data never leaves the perimeter.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="band reveal" id="contact">
+        <span class="eyebrow">Let's start</span>
+        <h2>Describe one task that keeps stealing your time.</h2>
+        <p class="lead">I'll tell you honestly whether a bot can take it over, for how much, and how fast. No strings attached.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg> Message me on Telegram</a>
+          <a class="btn btn-ghost" href="mailto:13tomenko@gmail.com?subject=Automation task">Send an email</a>
+        </div>
+        <button class="copy-mail" type="button" data-copied="copied ✓" data-mail="13tomenko@gmail.com">or copy my email: <b>13tomenko@gmail.com</b></button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <span class="mark"><span class="dot" aria-hidden="true"></span> Vladyslav Tomenko</span>
+      <span>Websites · n8n automation · Telegram bots · integrations</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    // scroll reveal
+    var els = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window && !reduce){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      },{threshold:0.14, rootMargin:'0px 0px -8% 0px'});
+      var i=0;
+      els.forEach(function(el){ el.style.transitionDelay=((i%6)*60)+'ms'; io.observe(el); i++; });
+    } else {
+      els.forEach(function(el){ el.classList.add('in'); });
+    }
+
+    // expandable «living» cards
+    document.querySelectorAll('.xhead').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var card = btn.closest('.xcard');
+        if(!card) return;
+        var open = card.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+
+    // copy email
+    function mailDone(btn){ btn.classList.add('done'); var b=btn.querySelector('b'); if(!b) return; if(!b.getAttribute('data-o')) b.setAttribute('data-o', b.textContent); b.textContent=btn.getAttribute('data-copied')||'скопировано ✓'; setTimeout(function(){ b.textContent=b.getAttribute('data-o'); btn.classList.remove('done'); },1800); }
+    document.querySelectorAll('.copy-mail').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var mail = btn.getAttribute('data-mail');
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(mail).then(function(){ mailDone(btn); }, function(){ mailDone(btn); }); }
+        else { mailDone(btn); }
+      });
+    });
+
+    // ambient node graph
+    var c = document.getElementById('net');
+    if(!c) return;
+    var ctx = c.getContext('2d'), DPR = Math.min(window.devicePixelRatio||1, 2);
+    var W,H,nodes=[];
+    function accent(){
+      var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+      return v || '#35B7A8';
+    }
+    function resize(){
+      var r = c.getBoundingClientRect();
+      W=r.width; H=r.height;
+      c.width=W*DPR; c.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+      var count = Math.max(14, Math.min(30, Math.round(W*H/26000)));
+      nodes=[];
+      for(var i=0;i<count;i++){
+        nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.14,vy:(Math.random()-0.5)*0.14,r:Math.random()*1.6+1.1});
+      }
+    }
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      var col = accent();
+      for(var i=0;i<nodes.length;i++){
+        var n=nodes[i]; n.x+=n.vx; n.y+=n.vy;
+        if(n.x<0||n.x>W) n.vx*=-1;
+        if(n.y<0||n.y>H) n.vy*=-1;
+        for(var j=i+1;j<nodes.length;j++){
+          var m=nodes[j], dx=n.x-m.x, dy=n.y-m.y, d=Math.sqrt(dx*dx+dy*dy);
+          if(d<130){
+            ctx.globalAlpha=(1-d/130)*0.5; ctx.strokeStyle=col; ctx.lineWidth=1;
+            ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
+          }
+        }
+      }
+      for(var k=0;k<nodes.length;k++){
+        var p=nodes[k]; ctx.globalAlpha=0.85; ctx.fillStyle=col;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill();
+      }
+      ctx.globalAlpha=1;
+      if(!reduce) requestAnimationFrame(frame);
+    }
+    resize(); frame();
+    var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ resize(); if(reduce) frame(); },160); });
+  })();
+</script>
+
+</body>
+</html>
