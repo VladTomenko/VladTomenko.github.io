@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vladyslav Tomenko — websites that work + n8n automation: bots, integrations, reports</title>
-<meta name="description" content="Websites that don't just look good — they work. Design and backend automation from one person: n8n, Telegram bots, integrations. 33 workflows in production.">
+<title>Vladyslav Tomenko — websites that work + business automation: bots, integrations, reports</title>
+<meta name="description" content="Websites that don't just look good — they work. Design and backend automation from one person. 33 systems in production. Based in Ukraine, async-friendly.">
 <meta name="theme-color" content="#0E0F11">
 <link rel="alternate" hreflang="ru" href="https://vladtomenko.github.io/">
 <link rel="alternate" hreflang="x-default" href="https://vladtomenko.github.io/">
@@ -12,7 +12,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://vladtomenko.github.io/en/">
 <meta property="og:title" content="Websites that don't just look good — they work">
-<meta property="og:description" content="Design + backend automation, one person. Form → CRM → Telegram notification → auto-reply. Describe your task — honest answer on price and timeline.">
+<meta property="og:description" content="Design + backend automation, one person. Form → CRM → notification → auto-reply. Describe your task — honest answer on price and timeline.">
 <meta property="og:image" content="https://vladtomenko.github.io/og-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -254,6 +254,33 @@
   /* плавный переход между страницами (RU↔EN); Firefox — мгновенно */
   @view-transition{navigation:auto}
 
+  /* изометрическая 3D-сцена процесса (чистый CSS) */
+  .iso{display:flex; justify-content:center; perspective:1200px; margin:0.5rem 0 3.5rem; overflow:visible}
+  .iso-stage{position:relative; transform-style:preserve-3d; transform:rotateX(55deg) rotateZ(-42deg);
+    display:grid; grid-auto-flow:column; gap:clamp(2rem,5vw,3.75rem)}
+  .iso-tile{position:relative; width:clamp(132px,15vw,172px); height:clamp(96px,11vw,120px);
+    background:var(--bg-2); border:1px solid var(--border-2); border-radius:14px; transform-style:preserve-3d;
+    box-shadow:-12px 12px 0 -3px color-mix(in srgb, var(--accent) 10%, transparent), -22px 22px 0 -8px rgba(0,0,0,0.12)}
+  .iso-tile.mid{border-color:var(--accent)}
+  .iso-label{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:0.3rem; text-align:center; transform:rotateZ(42deg) rotateX(-55deg); padding:0.5rem}
+  .iso-label b{font-weight:600; font-size:clamp(0.875rem,1.3vw,1.02rem); letter-spacing:-0.01em}
+  .iso-label i{font-style:normal; font-family:var(--mono); font-size:clamp(0.66rem,1vw,0.78rem); color:var(--text-2);
+    letter-spacing:0.02em; line-height:1.4}
+  .iso-line{position:absolute; left:6%; right:6%; top:50%; height:2px; transform:translateZ(-2px);
+    background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 45%, transparent), transparent)}
+  .iso-dot{position:absolute; top:50%; left:8%; width:12px; height:12px; transform:translate(-50%,-50%); border-radius:999px;
+    background:var(--accent); box-shadow:0 0 0 5px color-mix(in srgb, var(--accent) 18%, transparent);
+    animation:iso-travel 5.5s ease-in-out infinite}
+  @keyframes iso-travel{
+    0%,12%{left:8%; opacity:1} 38%,50%{left:50%; opacity:1} 76%,92%{left:92%; opacity:1} 100%{left:92%; opacity:0}}
+  @media (max-width:560px){
+    .iso-stage{transform:rotateX(55deg) rotateZ(-42deg) scale(0.82)}
+    .iso{margin-bottom:2.25rem}
+    .iso-label i{display:none}
+    .iso-label b{font-size:0.9rem}
+  }
+
   @media (max-width:900px){
     .hero-inner{grid-template-columns:1fr; gap:2.5rem}
     .hero-copy{max-width:100%}
@@ -282,7 +309,7 @@
       <span class="mark"><span class="dot" aria-hidden="true"></span> Vladyslav&nbsp;Tomenko <span class="tag">// AI-automation</span></span>
       <span style="display:flex; align-items:center; gap:0.75rem">
         <a class="lang" href="/" aria-label="Русская версия">RU</a>
-        <a class="btn btn-ghost btn-sm" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener">Telegram</a>
+        <a class="btn btn-ghost btn-sm" href="mailto:13tomenko@gmail.com?subject=Automation task">Email me</a>
       </span>
     </div>
   </header>
@@ -291,7 +318,7 @@
     <canvas id="net" aria-hidden="true"></canvas>
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">Websites · Telegram bots · n8n automation</span>
+        <span class="eyebrow">Websites · bots · business automation</span>
         <h1>Websites that don't just look good — they work.</h1>
         <p class="lead">Design and backend automation, one person. A form on a normal site just sends an email. A form I build routes the lead into your CRM, notifies you on Telegram, and replies to the client automatically.</p>
         <div class="cta-row">
@@ -313,9 +340,9 @@
 
   <div class="proof">
     <div class="container">
-      <div class="stat reveal"><div class="n">33</div><div class="l">production workflows running daily — not tutorial projects</div></div>
-      <div class="stat reveal"><div class="n">≠</div><div class="l">creator ≠ verifier: a separate layer catches errors before you see them</div></div>
-      <div class="stat reveal"><div class="n">24/7</div><div class="l">your site keeps taking and routing leads while you sleep</div></div>
+      <div class="stat reveal"><div class="n">33</div><div class="l">production systems running daily for real use — not tutorial projects</div></div>
+      <div class="stat reveal"><div class="n">×2</div><div class="l">every build is double-checked by an independent test layer — errors get caught before you ever see them</div></div>
+      <div class="stat reveal"><div class="n">EET</div><div class="l">Vladyslav, based in Ukraine — async-friendly with US/EU hours, replies same day</div></div>
     </div>
   </div>
 
@@ -343,10 +370,18 @@
           </ul>
         </div>
       </div>
+      <div class="iso reveal" aria-hidden="true">
+        <div class="iso-stage">
+          <div class="iso-tile"><div class="iso-label"><b>Form on your site</b><i>a client leaves<br>a request</i></div></div>
+          <div class="iso-tile mid"><div class="iso-label"><b>Backend (n8n)</b><i>understands it<br>and routes it</i></div></div>
+          <div class="iso-tile"><div class="iso-label"><b>Result</b><i>CRM card · you get pinged<br>client gets auto-reply</i></div></div>
+          <div class="iso-line"></div><div class="iso-dot"></div>
+        </div>
+      </div>
       <div class="grid cols-3">
-        <div class="card reveal"><span class="k">Design</span><h3>Design &amp; build</h3><p>A design system for your brand — type scale, spacing grid, dual theme — with conversion-focused sections and a polished mobile version. Every build passes a deterministic quality gate, not a "looks fine" check.</p></div>
-        <div class="card reveal"><span class="k">Backend</span><h3>Automation (n8n)</h3><p>Leads flow into your CRM, you get notified, the client gets an instant reply. Integrations, AI lead qualification, scheduled reports. The site stops being a brochure.</p></div>
-        <div class="card reveal"><span class="k">Speed</span><h3>Speed, SEO, accessibility</h3><p>Core Web Vitals under control, semantic markup and structured data — readable by Google, AI assistants and screen readers. Fast by architecture, not by luck.</p></div>
+        <div class="card reveal"><span class="k">Design</span><h3>Design &amp; build</h3><p>A custom look that matches your brand and works on any phone — no cookie-cutter templates. Every build passes a deterministic quality gate, not a "looks fine" check.</p></div>
+        <div class="card reveal"><span class="k">Backend</span><h3>Automation (n8n)</h3><p>Leads flow into your CRM — HubSpot, Airtable, Google Sheets, or any CRM with an API. You get notified, the client gets an instant reply. The site stops being a brochure.</p></div>
+        <div class="card reveal"><span class="k">Speed</span><h3>Speed &amp; Google</h3><p>Loads fast on any phone and gets found by Google and AI search. That's a property of correct architecture (Core Web Vitals, structured data) — not "SEO" sold separately.</p></div>
       </div>
     </div>
   </section>
@@ -381,7 +416,7 @@
           </div></div></div>
         </div>
       </div>
-      <p class="small reveal" style="margin-top:1.5rem">Standalone automation — from $500 per integration. Maintenance &amp; growth — optional. Remote &amp; async-friendly.</p>
+      <p class="small reveal" style="margin-top:1.5rem">A typical Launch lands at $800–1,200. Standalone automation — from $500 per integration. You own everything I build; running costs (hosting, APIs) are discussed upfront — no surprises. Maintenance &amp; growth — optional.</p>
     </div>
   </section>
 
@@ -408,9 +443,9 @@
         <p class="lead">Client details are under NDA — I show architecture and demos on anonymized data. Case #1 is this site itself: designed and built by me, with design tokens, dual theme and a deterministic quality gate before every release.</p>
       </div>
       <div class="grid cols-3">
-        <div class="card reveal"><span class="k">Case 01</span><h3>AI inbox</h3><p>Incoming messages — including voice — get transcribed, classified by AI and filed automatically. With access whitelisting and the right to be forgotten.</p></div>
-        <div class="card reveal"><span class="k">Case 02</span><h3>Verified pipeline</h3><p>Scanner → deterministic engine → a separate outcome evaluator. The part that generates a decision is never the part that grades it.</p></div>
-        <div class="card reveal"><span class="k">Case 03</span><h3>Data protection</h3><p>Three layers of control: dangerous operations intercepted before execution, secret-leak scanning, egress audit — so sensitive data never leaves the perimeter.</p></div>
+        <div class="card reveal"><span class="k">Case 01</span><h3>AI inbox</h3><p><b>Built for</b> a specialist whose clients send voice messages all day. Voice → text → AI understands what it's about → filed into the right folder. Manual sorting: zero. Nothing gets lost. Access is whitelisted; any user's data deletes on one command.</p></div>
+        <div class="card reveal"><span class="k">Case 02</span><h3>Analytics with self-check</h3><p><b>Built for</b> an internal system making daily decisions on a market data stream, where errors are expensive. One system does the analysis — a fully separate one grades how it actually turned out. Honest numbers instead of a system praising itself.</p></div>
+        <div class="card reveal"><span class="k">Case 03</span><h3>Data protection</h3><p><b>Built for</b> any business where client personal data flows through the system. Dangerous operations intercepted before execution, secret-leak scanning, egress audit — sensitive data never leaves the perimeter. Runs in my own production daily.</p></div>
       </div>
     </div>
   </section>
@@ -422,8 +457,8 @@
         <h2>Describe one task that keeps stealing your time.</h2>
         <p class="lead">I'll tell you honestly whether a bot can take it over, for how much, and how fast. No strings attached.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg> Message me on Telegram</a>
-          <a class="btn btn-ghost" href="mailto:13tomenko@gmail.com?subject=Automation task">Send an email</a>
+          <a class="btn btn-primary" href="mailto:13tomenko@gmail.com?subject=Automation task">Send an email</a>
+          <a class="btn btn-ghost" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg> Telegram</a>
         </div>
         <button class="copy-mail" type="button" data-copied="copied ✓" data-mail="13tomenko@gmail.com">or copy my email: <b>13tomenko@gmail.com</b></button>
       </div>
@@ -432,8 +467,8 @@
 
   <footer>
     <div class="container foot">
-      <span class="mark"><span class="dot" aria-hidden="true"></span> Vladyslav Tomenko</span>
-      <span>Websites · n8n automation · Telegram bots · integrations</span>
+      <span class="mark"><span class="dot" aria-hidden="true"></span> Vladyslav Tomenko · Ukraine (EET)</span>
+      <span>Websites · n8n automation · bots · integrations · <a href="https://github.com/VladTomenko" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline">GitHub</a></span>
     </div>
   </footer>
 </div>
@@ -490,48 +525,71 @@
       });
     });
 
-    // ambient node graph
+    // 3D-глобус сети: точки на сфере (фибоначчи), вращение + параллакс за курсором. Без библиотек.
     var c = document.getElementById('net');
     if(!c) return;
     var ctx = c.getContext('2d'), DPR = Math.min(window.devicePixelRatio||1, 2);
-    var W,H,nodes=[];
+    var W,H,R,CX,CY,pts=[],pairs=[];
+    var ry=0, rx=-0.35, tRX=-0.35, tRY=0, F=3.2;
     function accent(){
       var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
       return v || '#35B7A8';
+    }
+    function build(){
+      var N=88; pts=[]; pairs=[];
+      var ga=Math.PI*(3-Math.sqrt(5));
+      for(var i=0;i<N;i++){
+        var y=1-(i/(N-1))*2, rad=Math.sqrt(1-y*y), th=ga*i;
+        pts.push({x:Math.cos(th)*rad, y:y, z:Math.sin(th)*rad});
+      }
+      // рёбра между близкими точками — расстояния на сфере не меняются при вращении: считаем один раз
+      for(var a=0;a<N;a++) for(var b=a+1;b<N;b++){
+        var dx=pts[a].x-pts[b].x, dy=pts[a].y-pts[b].y, dz=pts[a].z-pts[b].z;
+        if(dx*dx+dy*dy+dz*dz < 0.16) pairs.push([a,b]);
+      }
     }
     function resize(){
       var r = c.getBoundingClientRect();
       W=r.width; H=r.height;
       c.width=W*DPR; c.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-      var count = Math.max(14, Math.min(30, Math.round(W*H/26000)));
-      nodes=[];
-      for(var i=0;i<count;i++){
-        nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.14,vy:(Math.random()-0.5)*0.14,r:Math.random()*1.6+1.1});
-      }
+      R=Math.min(W*0.24, H*0.42, 300); CX=W*0.76; CY=H*0.44;
+      if(W<900){ CX=W*0.5; CY=H*0.30; R=Math.min(W*0.34,180); }
+    }
+    function project(p){
+      // вращение Y затем X
+      var cy=Math.cos(ry), sy=Math.sin(ry), cx=Math.cos(rx), sx=Math.sin(rx);
+      var x=p.x*cy+p.z*sy, z=-p.x*sy+p.z*cy;
+      var y=p.y*cx-z*sx;  z=p.y*sx+z*cx;
+      var s=F/(F+z);
+      return {x:CX+x*R*s, y:CY+y*R*s, z:z, s:s};
     }
     function frame(){
       ctx.clearRect(0,0,W,H);
-      var col = accent();
-      for(var i=0;i<nodes.length;i++){
-        var n=nodes[i]; n.x+=n.vx; n.y+=n.vy;
-        if(n.x<0||n.x>W) n.vx*=-1;
-        if(n.y<0||n.y>H) n.vy*=-1;
-        for(var j=i+1;j<nodes.length;j++){
-          var m=nodes[j], dx=n.x-m.x, dy=n.y-m.y, d=Math.sqrt(dx*dx+dy*dy);
-          if(d<130){
-            ctx.globalAlpha=(1-d/130)*0.5; ctx.strokeStyle=col; ctx.lineWidth=1;
-            ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
-          }
-        }
+      ry+=0.0016+(tRY-0)*0.0004; rx+=(tRX-rx)*0.04;
+      var col=accent(), P=[];
+      for(var i=0;i<pts.length;i++) P.push(project(pts[i]));
+      ctx.lineWidth=1;
+      for(var e=0;e<pairs.length;e++){
+        var a=P[pairs[e][0]], b=P[pairs[e][1]];
+        var depth=1-((a.z+b.z)/2+1)/2; // 1=перед, 0=зад
+        ctx.globalAlpha=0.06+depth*0.30; ctx.strokeStyle=col;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
       }
-      for(var k=0;k<nodes.length;k++){
-        var p=nodes[k]; ctx.globalAlpha=0.85; ctx.fillStyle=col;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill();
+      for(var k=0;k<P.length;k++){
+        var q=P[k], depth2=1-(q.z+1)/2;
+        ctx.globalAlpha=0.25+depth2*0.65; ctx.fillStyle=col;
+        ctx.beginPath(); ctx.arc(q.x,q.y,(0.9+depth2*1.5)*q.s,0,6.2832); ctx.fill();
       }
       ctx.globalAlpha=1;
       if(!reduce) requestAnimationFrame(frame);
     }
-    resize(); frame();
+    build(); resize(); frame();
+    if(!reduce){
+      document.addEventListener('mousemove', function(e){
+        var nx=e.clientX/Math.max(1,window.innerWidth)-0.5, ny=e.clientY/Math.max(1,window.innerHeight)-0.5;
+        tRY=nx*2; tRX=-0.35+ny*0.5;
+      }, {passive:true});
+    }
     var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ resize(); if(reduce) frame(); },160); });
   })();
 </script>
