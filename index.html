@@ -3,14 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Владислав Томенко — автоматизация бизнеса на n8n: боты, интеграции, отчёты</title>
-<meta name="description" content="Автоматизирую рутину бизнеса на n8n: Telegram-боты, интеграции, парсинг и отчёты под ключ. 33 воркфлоу в проде.">
+<title>Владислав Томенко — сайты и автоматизация бизнеса на n8n: боты, интеграции, отчёты</title>
+<meta name="description" content="Сайты, которые работают, и автоматизация рутины на n8n: Telegram-боты, интеграции, парсинг и отчёты под ключ. 33 воркфлоу в проде.">
 <meta name="theme-color" content="#0E0F11">
+<link rel="alternate" hreflang="en" href="https://vladtomenko.github.io/en/">
+<link rel="alternate" hreflang="ru" href="https://vladtomenko.github.io/">
+<link rel="alternate" hreflang="x-default" href="https://vladtomenko.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://vladtomenko.github.io/">
-<meta property="og:title" content="Автоматизирую рутину бизнеса на n8n — под ключ">
-<meta property="og:description" content="Telegram-боты, интеграции, парсинг и отчёты. 33 воркфлоу в проде. Опишите задачу — отвечу, реально ли и за сколько.">
+<meta property="og:title" content="Сайты, которые работают + автоматизация на n8n — под ключ">
+<meta property="og:description" content="Дизайн и бэкенд-автоматизация в одних руках. Telegram-боты, интеграции, отчёты. Опишите задачу — отвечу, реально ли и за сколько.">
 <meta property="og:image" content="https://vladtomenko.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -90,6 +93,22 @@
   .dot{width:9px; height:9px; border-radius:var(--r-pill); background:var(--accent);
     box-shadow:0 0 0 4px var(--accent-soft)}
   .mark .tag{font-family:var(--mono); font-size:0.75rem; color:var(--text-3); letter-spacing:0.04em}
+  .lang{font-family:var(--mono); font-size:0.8125rem; color:var(--text-3); letter-spacing:0.06em;
+    padding:0.375rem 0.5rem; border-radius:8px; transition:color 150ms var(--ease)}
+  .lang:hover{color:var(--accent)}
+
+  /* web-direction section */
+  .vs{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:3rem}
+  .vs .card:hover{transform:none}
+  .vs .vs-t{font-family:var(--mono); font-size:0.75rem; letter-spacing:0.05em; text-transform:uppercase;
+    display:block; margin-bottom:0.875rem}
+  .vs .plain .vs-t{color:var(--text-3)}
+  .vs .works{border-color:var(--accent)}
+  .vs .works .vs-t{color:var(--accent)}
+  .vs ul{margin:0; padding:0; list-style:none}
+  .vs li{padding:0.4rem 0; color:var(--text-2); font-size:0.95rem; line-height:1.45}
+  .vs .plain li{color:var(--text-3)}
+  @media (max-width:820px){ .vs{grid-template-columns:1fr} }
 
   /* buttons */
   .btn{display:inline-flex; align-items:center; gap:0.5rem; height:48px; padding-inline:1.375rem;
@@ -238,7 +257,10 @@
   <header>
     <div class="container bar">
       <span class="mark"><span class="dot" aria-hidden="true"></span> Владислав&nbsp;Томенко <span class="tag">// AI-automation</span></span>
-      <a class="btn btn-ghost btn-sm" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener">Telegram</a>
+      <span style="display:flex; align-items:center; gap:0.75rem">
+        <a class="lang" href="/en/" aria-label="English version">EN</a>
+        <a class="btn btn-ghost btn-sm" href="https://t.me/Vlad_Tomenko" target="_blank" rel="noopener">Telegram</a>
+      </span>
     </div>
   </header>
 
@@ -246,7 +268,7 @@
     <canvas id="net" aria-hidden="true"></canvas>
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">n8n · Telegram-боты · интеграции</span>
+        <span class="eyebrow">n8n · Telegram-боты · сайты · интеграции</span>
         <h1>Автоматизирую рутину бизнеса — под ключ.</h1>
         <p class="lead">Вы перестаёте копировать данные руками, отвечать на одни и те же сообщения и собирать отчёты по ночам. Я собираю систему, которая делает это сама — и показываю её в работе до оплаты остатка.</p>
         <div class="cta-row">
@@ -328,6 +350,66 @@
           </div></div></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="web">
+    <div class="container">
+      <div class="head-block reveal">
+        <span class="eyebrow">Создание сайтов</span>
+        <h2>Сайт, который не просто красивый — он работает.</h2>
+        <p class="lead">Дизайн и бэкенд-автоматизация в одних руках. Обычный сайт лежит витриной — ваш принимает заявки, сортирует лидов и уведомляет вас 24/7.</p>
+      </div>
+
+      <div class="vs reveal">
+        <div class="card plain">
+          <span class="vs-t">Обычный сайт</span>
+          <ul>
+            <li>Визитка. Просто лежит.</li>
+            <li>Форма шлёт письмо «в никуда».</li>
+            <li>Красиво — но ничего не делает.</li>
+          </ul>
+        </div>
+        <div class="card works">
+          <span class="vs-t">Ваш сайт</span>
+          <ul>
+            <li>Сотрудник. Принимает заявки круглосуточно.</li>
+            <li>Форма → CRM → уведомление в Telegram → автоответ клиенту.</li>
+            <li>Красиво, быстро, доступно — <b>и</b> работает.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid cols-3" style="margin-bottom:3rem">
+        <div class="card reveal"><span class="k">Дизайн</span><h3>Дизайн и вёрстка</h3><p>Дизайн-система под ваш бренд (цвет, шрифты, сетка), конверсионные секции, выверенный мобайл. Каждый билд проходит гейт качества — не «на глаз».</p></div>
+        <div class="card reveal"><span class="k">Бэкенд</span><h3>Автоматизация (n8n)</h3><p>Заявки уходят в CRM, вам — уведомление, клиенту — автоответ. Интеграции, ИИ-обработка и квалификация лидов. Сайт перестаёт быть витриной.</p></div>
+        <div class="card reveal"><span class="k">Скорость</span><h3>Скорость, SEO, доступность</h3><p>Быстрая загрузка (Core Web Vitals), семантика и разметка — сайт понимают Google, ИИ-ассистенты и скринридеры. Свойство архитектуры, не «SEO сверху».</p></div>
+      </div>
+
+      <div class="grid cols-3">
+        <div class="card xcard reveal">
+          <button class="xhead" aria-expanded="false"><span><span class="h3">Лендинг «Старт»</span><span class="price"><span class="amt">от 15k</span><span class="per">грн · ~1 неделя</span></span><span class="sum">Одностраничник, который сразу принимает заявки.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="xdetail"><div><div class="xbody">
+            <div class="row"><b>Входит</b><span><span class="tick">✓</span> кастомный дизайн под бренд (не шаблон) · конверсионные секции + мобайл · форма → Telegram/почта с уведомлением · базовый SEO + аналитика · скорость и доступность в норме.</span></div>
+            <div class="row"><b>Для кого</b><span>Запуск услуги или оффера — быстро и с работающим приёмом заявок.</span></div>
+          </div></div></div>
+        </div>
+        <div class="card xcard reveal">
+          <button class="xhead" aria-expanded="false"><span><span class="h3">Сайт «Рост»</span><span class="price"><span class="amt">от 45k</span><span class="per">грн · 2–4 недели</span></span><span class="sum">Многостраничник с реальным функционалом.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="xdetail"><div><div class="xbody">
+            <div class="row"><b>Входит</b><span><span class="tick">✓</span> всё из «Старт» + до 6–8 страниц · динамика: интеграции по API, анимации · форма → CRM с автоответом · структурные данные (JSON-LD), техническое SEO · CMS по запросу — правите контент сами.</span></div>
+            <div class="row"><b>Для кого</b><span>Бизнес, которому нужен полноценный сайт, а не визитка.</span></div>
+          </div></div></div>
+        </div>
+        <div class="card xcard reveal">
+          <button class="xhead" aria-expanded="false"><span><span class="h3">Сайт + автоматизация «Система»</span><span class="price"><span class="amt">от 75k</span><span class="per">грн · от месяца</span></span><span class="sum">Сайт как рабочий инструмент бизнеса.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="xdetail"><div><div class="xbody">
+            <div class="row"><b>Входит</b><span><span class="tick">✓</span> всё из «Рост» + сквозная автоматизация на n8n · форма → CRM → уведомление → ИИ-квалификация лида → авто-онбординг · платежи, рассылки, мессенджеры, аналитика.</span></div>
+            <div class="row"><b>Для кого</b><span>Сервисный бизнес с потоком заявок, где ручная обработка — потерянные деньги.</span></div>
+          </div></div></div>
+        </div>
+      </div>
+      <p class="small reveal" style="margin-top:1.5rem">Этот сайт я спроектировал и сверстал сам — он и есть демо: дизайн-система, две темы, выверенный мобайл, гейт качества перед выпуском.</p>
     </div>
   </section>
 
@@ -465,7 +547,7 @@
     });
 
     // copy email
-    function mailDone(btn){ btn.classList.add('done'); var b=btn.querySelector('b'); if(!b) return; if(!b.getAttribute('data-o')) b.setAttribute('data-o', b.textContent); b.textContent='скопировано ✓'; setTimeout(function(){ b.textContent=b.getAttribute('data-o'); btn.classList.remove('done'); },1800); }
+    function mailDone(btn){ btn.classList.add('done'); var b=btn.querySelector('b'); if(!b) return; if(!b.getAttribute('data-o')) b.setAttribute('data-o', b.textContent); b.textContent=btn.getAttribute('data-copied')||'скопировано ✓'; setTimeout(function(){ b.textContent=b.getAttribute('data-o'); btn.classList.remove('done'); },1800); }
     document.querySelectorAll('.copy-mail').forEach(function(btn){
       btn.addEventListener('click', function(){
         var mail = btn.getAttribute('data-mail');
