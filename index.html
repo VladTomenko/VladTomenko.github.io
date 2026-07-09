@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Владислав Томенко — сайты и автоматизация бизнеса на n8n: боты, интеграции, отчёты</title>
-<meta name="description" content="Сайты, которые работают, и автоматизация рутины на n8n: Telegram-боты, интеграции, парсинг и отчёты под ключ. 33 воркфлоу в проде.">
+<title>Владислав Томенко — сайты и автоматизация бизнеса: боты, интеграции, отчёты</title>
+<meta name="description" content="Сайты, которые работают, и автоматизация заявок: Telegram/Instagram-боты, интеграции, парсинг и отчёты под ключ. 33 работающие системы.">
 <meta name="theme-color" content="#0E0F11">
 <link rel="alternate" hreflang="en" href="https://vladtomenko.github.io/en/">
 <link rel="alternate" hreflang="x-default" href="https://vladtomenko.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://vladtomenko.github.io/">
-<meta property="og:title" content="Сайты, которые работают + автоматизация на n8n — под ключ">
-<meta property="og:description" content="Дизайн и бэкенд-автоматизация в одних руках. Telegram-боты, интеграции, отчёты. Опишите задачу — отвечу, реально ли и за сколько.">
+<meta property="og:title" content="Сайты, которые работают + автоматизация заявок — под ключ">
+<meta property="og:description" content="Дизайн и бэкенд-автоматизация в одних руках. Заявки из Instagram/Telegram → CRM → уведомление. Опишите задачу — отвечу, реально ли и за сколько.">
 <meta property="og:image" content="https://vladtomenko.github.io/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -254,6 +254,33 @@
   /* плавный переход между страницами (RU↔EN); Firefox — мгновенно */
   @view-transition{navigation:auto}
 
+  /* изометрическая 3D-сцена процесса (чистый CSS) */
+  .iso{display:flex; justify-content:center; perspective:1200px; margin:0.5rem 0 3.5rem; overflow:visible}
+  .iso-stage{position:relative; transform-style:preserve-3d; transform:rotateX(55deg) rotateZ(-42deg);
+    display:grid; grid-auto-flow:column; gap:clamp(2rem,5vw,3.75rem)}
+  .iso-tile{position:relative; width:clamp(132px,15vw,172px); height:clamp(96px,11vw,120px);
+    background:var(--bg-2); border:1px solid var(--border-2); border-radius:14px; transform-style:preserve-3d;
+    box-shadow:-12px 12px 0 -3px color-mix(in srgb, var(--accent) 10%, transparent), -22px 22px 0 -8px rgba(0,0,0,0.12)}
+  .iso-tile.mid{border-color:var(--accent)}
+  .iso-label{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:0.3rem; text-align:center; transform:rotateZ(42deg) rotateX(-55deg); padding:0.5rem}
+  .iso-label b{font-weight:600; font-size:clamp(0.875rem,1.3vw,1.02rem); letter-spacing:-0.01em}
+  .iso-label i{font-style:normal; font-family:var(--mono); font-size:clamp(0.66rem,1vw,0.78rem); color:var(--text-2);
+    letter-spacing:0.02em; line-height:1.4}
+  .iso-line{position:absolute; left:6%; right:6%; top:50%; height:2px; transform:translateZ(-2px);
+    background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 45%, transparent), transparent)}
+  .iso-dot{position:absolute; top:50%; left:8%; width:12px; height:12px; transform:translate(-50%,-50%); border-radius:999px;
+    background:var(--accent); box-shadow:0 0 0 5px color-mix(in srgb, var(--accent) 18%, transparent);
+    animation:iso-travel 5.5s ease-in-out infinite}
+  @keyframes iso-travel{
+    0%,12%{left:8%; opacity:1} 38%,50%{left:50%; opacity:1} 76%,92%{left:92%; opacity:1} 100%{left:92%; opacity:0}}
+  @media (max-width:560px){
+    .iso-stage{transform:rotateX(55deg) rotateZ(-42deg) scale(0.82)}
+    .iso{margin-bottom:2.25rem}
+    .iso-label i{display:none}
+    .iso-label b{font-size:0.9rem}
+  }
+
   @media (max-width:900px){
     .hero-inner{grid-template-columns:1fr; gap:2.5rem}
     .hero-copy{max-width:100%}
@@ -291,7 +318,7 @@
     <canvas id="net" aria-hidden="true"></canvas>
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">n8n · Telegram-боты · сайты · интеграции</span>
+        <span class="eyebrow">Заявки · боты · сайты · автоматизация рутины</span>
         <h1>Автоматизирую рутину бизнеса — под ключ.</h1>
         <p class="lead">Вы перестаёте копировать данные руками, отвечать на одни и те же сообщения и собирать отчёты по ночам. Я собираю систему, которая делает это сама — и показываю её в работе до оплаты остатка.</p>
         <div class="cta-row">
@@ -303,7 +330,7 @@
         <div class="flow-top"><span class="dot" aria-hidden="true"></span> workflow · пример</div>
         <ol>
           <li><span class="mk"><i></i></span><div><div class="lbl">Заявка в Telegram</div><div class="sub">клиент пишет боту</div></div></li>
-          <li><span class="mk"><i></i></span><div><div class="lbl">n8n разбирает</div><div class="sub">классификация · маршрутизация</div></div></li>
+          <li><span class="mk"><i></i></span><div><div class="lbl">Бот понимает, о чём речь</div><div class="sub">и передаёт нужному человеку</div></div></li>
           <li><span class="mk"><i></i></span><div><div class="lbl">Строка в таблице</div><div class="sub">Google Sheets или CRM</div></div></li>
           <li><span class="mk"><i></i></span><div><div class="lbl">Сводка вечером</div><div class="sub">руководителю, автоматически</div></div></li>
         </ol>
@@ -313,9 +340,9 @@
 
   <div class="proof">
     <div class="container">
-      <div class="stat reveal"><div class="n">33</div><div class="l">рабочих воркфлоу в продакшене — не «пробовал по туториалу»</div></div>
-      <div class="stat reveal"><div class="n">2FA</div><div class="l">верифицированный профиль, аккуратная работа с конфиденциальными данными</div></div>
-      <div class="stat reveal"><div class="n">≠</div><div class="l">принцип «создатель ≠ проверяющий»: отдельный слой ловит ошибки до клиента</div></div>
+      <div class="stat reveal"><div class="n">33</div><div class="l">работающие системы — крутятся каждый день у меня и клиентов, не учебные</div></div>
+      <div class="stat reveal"><div class="n">×2</div><div class="l">каждую систему проверяет отдельный контур — ошибки ловятся до того, как их увидите вы</div></div>
+      <div class="stat reveal"><div class="n">✓</div><div class="l">верифицированный профиль на Freelancehunt · с вашими данными — аккуратно</div></div>
     </div>
   </div>
 
@@ -324,18 +351,28 @@
       <div class="head-block reveal">
         <span class="eyebrow">Что я делаю</span>
         <h2>Снимаю повторяющуюся работу с людей.</h2>
+        <p class="lead">Знакомо? <b>Салон или клиника</b> — заявки из Instagram-директа теряются, админ зашивается. <b>Сервисная компания</b> — заявка с сайта должна сама попасть в CRM и бригаде в чат. <b>Эксперт</b> — клиенты шлют голосовые, и всё это надо разбирать руками. Вот это я и автоматизирую.</p>
+      </div>
+      <div class="iso reveal" aria-hidden="true">
+        <div class="iso-stage">
+          <div class="iso-tile"><div class="iso-label"><b>Заявка</b><i>Instagram · Telegram<br>WhatsApp · сайт</i></div></div>
+          <div class="iso-tile mid"><div class="iso-label"><b>Бот разбирает</b><i>понял, о чём речь<br>передал нужному</i></div></div>
+          <div class="iso-tile"><div class="iso-label"><b>CRM + вы</b><i>карточка создана<br>уведомление пришло</i></div></div>
+          <div class="iso-line"></div><div class="iso-dot"></div>
+        </div>
       </div>
       <div class="grid cols-3">
         <div class="card xcard reveal">
           <button class="xhead" aria-expanded="false"><span><span class="k">Боты</span><span class="h3">Telegram-боты</span><span class="sum">Приём заявок, авто-ответы, ИИ-классификация, уведомления команде.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="xdetail"><div><div class="xbody">
             <div class="row"><b>Входит</b><span>Приём заявок и сообщений → таблица или CRM · авто-ответы на частые вопросы · уведомления команде о новом.</span></div>
-            <div class="row"><b>Пример</b><span>Заявка из канала → строка в Google&nbsp;Sheets и пинг менеджеру.</span></div>
+            <div class="row"><b>Каналы</b><span>Telegram · Instagram Direct · WhatsApp · Viber · форма на сайте — подключаю тот, где пишут ваши клиенты.</span></div>
+            <div class="row"><b>Пример</b><span>Заявка из директа → строка в Google&nbsp;Sheets и пинг администратору.</span></div>
             <div class="row"><b>Срок</b><span>2–4 дня · пакет «Старт».</span></div>
           </div></div></div>
         </div>
         <div class="card xcard reveal">
-          <button class="xhead" aria-expanded="false"><span><span class="k">Данные</span><span class="h3">Парсинг → отчёт</span><span class="sum">Сбор данных с сайтов и маркетплейсов в таблицу, сводка.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <button class="xhead" aria-expanded="false"><span><span class="k">Данные</span><span class="h3">Данные с сайтов → таблица</span><span class="sum">Цены конкурентов и нужные данные сами собираются в таблицу, вам — сводка.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="xdetail"><div><div class="xbody">
             <div class="row"><b>Входит</b><span>Парсер забирает нужные поля по расписанию или кнопке · выгрузка в Sheets / Excel / БД · слой проверки — битые и пустые записи не попадают в отчёт.</span></div>
             <div class="row"><b>Пример</b><span>Цены конкурентов раз в день → таблица и утренняя сводка.</span></div>
@@ -345,8 +382,8 @@
         <div class="card xcard reveal">
           <button class="xhead" aria-expanded="false"><span><span class="k">Интеграции</span><span class="h3">Связка сервисов</span><span class="sum">CRM ↔ таблицы ↔ мессенджеры ↔ почта, без ручных экспортов.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="xdetail"><div><div class="xbody">
-            <div class="row"><b>Входит</b><span>Связка 2–3 сервисов, данные ходят сами · без дублей и ручного копирования · вся логика в n8n.</span></div>
-            <div class="row"><b>Пример</b><span>Заявка с сайта → CRM → уведомление в Telegram → карточка в базе.</span></div>
+            <div class="row"><b>Входит</b><span>Связка 2–3 сервисов, данные ходят сами · без дублей и ручного копирования. CRM — это программа, где вы ведёте клиентов (HubSpot, Airtable, программа записи…) — подключу вашу.</span></div>
+            <div class="row"><b>Пример</b><span>Клиент записался на сайте → попал в вашу программу записи → администратору пришло уведомление.</span></div>
             <div class="row"><b>Срок</b><span>5–10 дней · пакет «Бизнес».</span></div>
           </div></div></div>
         </div>
@@ -366,10 +403,10 @@
           </div></div></div>
         </div>
         <div class="card xcard reveal">
-          <button class="xhead" aria-expanded="false"><span><span class="k">Контроль</span><span class="h3">Проверка качества</span><span class="sum">Отдельный слой сверяет результат, чтобы не ошибаться молча.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <button class="xhead" aria-expanded="false"><span><span class="k">Контроль</span><span class="h3">Проверка качества</span><span class="sum">Ошибки ловятся до того, как их увидите вы или ваш клиент.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="xdetail"><div><div class="xbody">
-            <div class="row"><b>Входит</b><span>Контур «создатель ≠ проверяющий» · автоматическая сверка результата · алерт при аномалии.</span></div>
-            <div class="row"><b>Зачем</b><span>Система не выдаёт тихо неверные данные — ошибка ловится до того, как её увидит клиент.</span></div>
+            <div class="row"><b>Входит</b><span>Отдельная проверяющая система сверяет результат работы основной · алерт вам при любой странности.</span></div>
+            <div class="row"><b>Зачем</b><span>Автоматизация без контроля может тихо ошибаться неделями. У меня тот, кто делает, и тот, кто проверяет, — всегда разные системы.</span></div>
           </div></div></div>
         </div>
       </div>
@@ -382,6 +419,14 @@
         <span class="eyebrow">Создание сайтов</span>
         <h2>Сайт, который не просто красивый — он работает.</h2>
         <p class="lead">Дизайн и бэкенд-автоматизация в одних руках. Обычный сайт лежит витриной — ваш принимает заявки, сортирует лидов и уведомляет вас 24/7.</p>
+      </div>
+      <div class="iso reveal" aria-hidden="true">
+        <div class="iso-stage">
+          <div class="iso-tile"><div class="iso-label"><b>Форма на сайте</b><i>клиент оставил<br>заявку</i></div></div>
+          <div class="iso-tile mid"><div class="iso-label"><b>Бэкенд (n8n)</b><i>обработал<br>и распределил</i></div></div>
+          <div class="iso-tile"><div class="iso-label"><b>Результат</b><i>CRM · вам в Telegram<br>клиенту автоответ</i></div></div>
+          <div class="iso-line"></div><div class="iso-dot"></div>
+        </div>
       </div>
 
       <div class="vs reveal">
@@ -406,7 +451,7 @@
       <div class="grid cols-3" style="margin-bottom:3rem">
         <div class="card reveal"><span class="k">Дизайн</span><h3>Дизайн и вёрстка</h3><p>Дизайн-система под ваш бренд (цвет, шрифты, сетка), конверсионные секции, выверенный мобайл. Каждый билд проходит гейт качества — не «на глаз».</p></div>
         <div class="card reveal"><span class="k">Бэкенд</span><h3>Автоматизация (n8n)</h3><p>Заявки уходят в CRM, вам — уведомление, клиенту — автоответ. Интеграции, ИИ-обработка и квалификация лидов. Сайт перестаёт быть витриной.</p></div>
-        <div class="card reveal"><span class="k">Скорость</span><h3>Скорость, SEO, доступность</h3><p>Быстрая загрузка (Core Web Vitals), семантика и разметка — сайт понимают Google, ИИ-ассистенты и скринридеры. Свойство архитектуры, не «SEO сверху».</p></div>
+        <div class="card reveal"><span class="k">Скорость</span><h3>Скорость и Google</h3><p>Сайт быстро открывается с телефона и его находят в Google и ИИ-поиске. Это свойство правильной архитектуры (Core Web Vitals, разметка) — а не «SEO сверху» за отдельные деньги.</p></div>
       </div>
 
       <div class="grid cols-3">
@@ -494,24 +539,27 @@
       </div>
       <div class="grid cols-3">
         <div class="card xcard reveal">
-          <button class="xhead" aria-expanded="false"><span><span class="k">Кейс 01</span><span class="h3">ИИ-инбокс</span><span class="sum">Поток сообщений, включая голосовые, авто-раскладывается по картотеке.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <button class="xhead" aria-expanded="false"><span><span class="k">Кейс 01</span><span class="h3">ИИ-инбокс</span><span class="sum">Клиенты шлют голосовые — они сами превращаются в разобранную картотеку.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="xdetail"><div><div class="xbody">
-            <div class="row"><b>Как устроено</b><span>Голос → расшифровка речи → ИИ-классификация → карточка в картотеке. Whitelist доступа и право на удаление данных пользователя.</span></div>
-            <div class="row"><b>Результат</b><span>Ноль ручной сортировки входящих.</span></div>
+            <div class="row"><b>Для кого</b><span>Специалист, которому клиенты пишут и наговаривают голосовые весь день — раньше всё разбиралось руками.</span></div>
+            <div class="row"><b>Как устроено</b><span>Голосовое → текст → ИИ понимает, о чём оно → карточка в нужном разделе картотеки. Доступ только с разрешённых аккаунтов, любые данные удаляются по одной команде.</span></div>
+            <div class="row"><b>Результат</b><span>Ручная сортировка входящих — ноль. Ничего не теряется.</span></div>
           </div></div></div>
         </div>
         <div class="card xcard reveal">
-          <button class="xhead" aria-expanded="false"><span><span class="k">Кейс 02</span><span class="h3">Харнесс с проверкой</span><span class="sum">Генерация решения и его проверка — намеренно разделены.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <button class="xhead" aria-expanded="false"><span><span class="k">Кейс 02</span><span class="h3">Аналитика с самопроверкой</span><span class="sum">Система обрабатывает поток данных и сама проверяет свои выводы.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="xdetail"><div><div class="xbody">
-            <div class="row"><b>Как устроено</b><span>Сканер → детерминированный движок разбора → отдельный оценщик результата. Тот, кто генерирует, и тот, кто проверяет, — разные контуры.</span></div>
-            <div class="row"><b>Результат</b><span>Система не может «сама себя похвалить» — метрики честные.</span></div>
+            <div class="row"><b>Для кого</b><span>Внутренняя система, где по потоку рыночных данных каждый день принимаются решения — цена ошибки высокая.</span></div>
+            <div class="row"><b>Как устроено</b><span>Одна система собирает данные и делает разбор, а совсем другая — независимо оценивает, что из этого сбылось. Считать себя правым система не может — её проверяет «второе мнение».</span></div>
+            <div class="row"><b>Результат</b><span>Честные цифры качества вместо красивых отчётов самой о себе.</span></div>
           </div></div></div>
         </div>
         <div class="card xcard reveal">
           <button class="xhead" aria-expanded="false"><span><span class="k">Кейс 03</span><span class="h3">Защита данных</span><span class="sum">Три слоя контроля, чтобы чувствительное не покидало контур.</span></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="xdetail"><div><div class="xbody">
-            <div class="row"><b>Как устроено</b><span>Перехват опасных операций до выполнения · сканер утечек секретов на коммите · аудит на выходе.</span></div>
-            <div class="row"><b>Результат</b><span>Показываю клиентам, работающим с персональными данными.</span></div>
+            <div class="row"><b>Для кого</b><span>Любой бизнес, где через систему идут персональные данные клиентов — и утечка недопустима.</span></div>
+            <div class="row"><b>Как устроено</b><span>Опасные действия перехватываются до выполнения · пароли и ключи не могут случайно попасть наружу · на выходе стоит контроль, что чувствительное не покидает систему.</span></div>
+            <div class="row"><b>Результат</b><span>Три независимых слоя защиты — работает у меня в проде каждый день.</span></div>
           </div></div></div>
         </div>
       </div>
@@ -593,48 +641,71 @@
       });
     });
 
-    // ambient node graph
+    // 3D-глобус сети: точки на сфере (фибоначчи), вращение + параллакс за курсором. Без библиотек.
     var c = document.getElementById('net');
     if(!c) return;
     var ctx = c.getContext('2d'), DPR = Math.min(window.devicePixelRatio||1, 2);
-    var W,H,nodes=[];
+    var W,H,R,CX,CY,pts=[],pairs=[];
+    var ry=0, rx=-0.35, tRX=-0.35, tRY=0, F=3.2;
     function accent(){
       var v = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
       return v || '#35B7A8';
+    }
+    function build(){
+      var N=88; pts=[]; pairs=[];
+      var ga=Math.PI*(3-Math.sqrt(5));
+      for(var i=0;i<N;i++){
+        var y=1-(i/(N-1))*2, rad=Math.sqrt(1-y*y), th=ga*i;
+        pts.push({x:Math.cos(th)*rad, y:y, z:Math.sin(th)*rad});
+      }
+      // рёбра между близкими точками — расстояния на сфере не меняются при вращении: считаем один раз
+      for(var a=0;a<N;a++) for(var b=a+1;b<N;b++){
+        var dx=pts[a].x-pts[b].x, dy=pts[a].y-pts[b].y, dz=pts[a].z-pts[b].z;
+        if(dx*dx+dy*dy+dz*dz < 0.16) pairs.push([a,b]);
+      }
     }
     function resize(){
       var r = c.getBoundingClientRect();
       W=r.width; H=r.height;
       c.width=W*DPR; c.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-      var count = Math.max(14, Math.min(30, Math.round(W*H/26000)));
-      nodes=[];
-      for(var i=0;i<count;i++){
-        nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.14,vy:(Math.random()-0.5)*0.14,r:Math.random()*1.6+1.1});
-      }
+      R=Math.min(W*0.24, H*0.42, 300); CX=W*0.76; CY=H*0.44;
+      if(W<900){ CX=W*0.5; CY=H*0.30; R=Math.min(W*0.34,180); }
+    }
+    function project(p){
+      // вращение Y затем X
+      var cy=Math.cos(ry), sy=Math.sin(ry), cx=Math.cos(rx), sx=Math.sin(rx);
+      var x=p.x*cy+p.z*sy, z=-p.x*sy+p.z*cy;
+      var y=p.y*cx-z*sx;  z=p.y*sx+z*cx;
+      var s=F/(F+z);
+      return {x:CX+x*R*s, y:CY+y*R*s, z:z, s:s};
     }
     function frame(){
       ctx.clearRect(0,0,W,H);
-      var col = accent();
-      for(var i=0;i<nodes.length;i++){
-        var n=nodes[i]; n.x+=n.vx; n.y+=n.vy;
-        if(n.x<0||n.x>W) n.vx*=-1;
-        if(n.y<0||n.y>H) n.vy*=-1;
-        for(var j=i+1;j<nodes.length;j++){
-          var m=nodes[j], dx=n.x-m.x, dy=n.y-m.y, d=Math.sqrt(dx*dx+dy*dy);
-          if(d<130){
-            ctx.globalAlpha=(1-d/130)*0.5; ctx.strokeStyle=col; ctx.lineWidth=1;
-            ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
-          }
-        }
+      ry+=0.0016+(tRY-0)*0.0004; rx+=(tRX-rx)*0.04;
+      var col=accent(), P=[];
+      for(var i=0;i<pts.length;i++) P.push(project(pts[i]));
+      ctx.lineWidth=1;
+      for(var e=0;e<pairs.length;e++){
+        var a=P[pairs[e][0]], b=P[pairs[e][1]];
+        var depth=1-((a.z+b.z)/2+1)/2; // 1=перед, 0=зад
+        ctx.globalAlpha=0.06+depth*0.30; ctx.strokeStyle=col;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
       }
-      for(var k=0;k<nodes.length;k++){
-        var p=nodes[k]; ctx.globalAlpha=0.85; ctx.fillStyle=col;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill();
+      for(var k=0;k<P.length;k++){
+        var q=P[k], depth2=1-(q.z+1)/2;
+        ctx.globalAlpha=0.25+depth2*0.65; ctx.fillStyle=col;
+        ctx.beginPath(); ctx.arc(q.x,q.y,(0.9+depth2*1.5)*q.s,0,6.2832); ctx.fill();
       }
       ctx.globalAlpha=1;
       if(!reduce) requestAnimationFrame(frame);
     }
-    resize(); frame();
+    build(); resize(); frame();
+    if(!reduce){
+      document.addEventListener('mousemove', function(e){
+        var nx=e.clientX/Math.max(1,window.innerWidth)-0.5, ny=e.clientY/Math.max(1,window.innerHeight)-0.5;
+        tRY=nx*2; tRX=-0.35+ny*0.5;
+      }, {passive:true});
+    }
     var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ resize(); if(reduce) frame(); },160); });
   })();
 </script>
